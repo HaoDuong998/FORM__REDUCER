@@ -39,13 +39,13 @@ class BaiTapForm extends Component {
           newError.sdt = '';
         }
 
-        if (name == 'email' && !this.checkDinhDangEmail(newValues[name])) {
+        if (name === 'email' && !this.checkDinhDangEmail(newValues[name])) {
           newError.email = 'Sai định dạng email';
         }else {
           newError.email = '';
         }
 
-        if (name == 'mssv' && !this.checkDinhDangId(newValues[name])) {
+        if (name === 'mssv' && !this.checkDinhDangId(newValues[name])) {
           newError.mssv = 'mssv từ 4 đến 6 chữ số';
         }else {
           newError.mssv = '';
@@ -56,7 +56,7 @@ class BaiTapForm extends Component {
       let arrow = false;
       let isActive = true;
       for (let key in newValues){
-        if(newValues[key] == ''){
+        if(newValues[key] === ''){
           arrow = true;
         }
       }
@@ -185,10 +185,9 @@ const mapDispatchToProps = (dispath) => {
         type: 'SET_ARR_HOCVIEN',
         payload,
       }
-      
+
       dispath(action)
     },
   }
-}
-
+};
 export default connect(null, mapDispatchToProps)(BaiTapForm)

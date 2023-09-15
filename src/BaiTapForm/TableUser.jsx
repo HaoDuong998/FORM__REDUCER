@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 class TableUser extends Component {
     render() {
         // console.log('props', this.props)
-        const { arrHocVien } = this.props
+        const { arrHocVien, deleteHocVien } = this.props
         return (
             <div className='container mt-5'>
                 <div className="table-responsive">
@@ -29,7 +29,9 @@ class TableUser extends Component {
                                         <td>{hocVien.sdt}</td>
                                         <td>{hocVien.email}</td>
                                         <td>
-                                            <button className='btn btn-danger me-3'>Xóa</button>
+                                            <button className='btn btn-danger me-3' onClick={()=>{
+                                                deleteHocVien(hocVien.id);
+                                            }}>Xóa</button>
                                             <button className='btn btn-warning'>Sửa</button>
                                         </td>
                                     </tr>
@@ -52,4 +54,16 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(TableUser)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteHocVien: (payload) => {
+            const action = {
+                type: 'DELETE_HOCVIEN',
+                payload,
+            }
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableUser)

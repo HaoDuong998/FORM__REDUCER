@@ -9,7 +9,10 @@ export const baiTapFormReducer = (state = initialState, action) => {
             const newArrHocVien = [...state.arrHocVien, action.payload]
             return {...state, arrHocVien: newArrHocVien}
         }
-
+        case 'DELETE_HOCVIEN': {
+            const newArrHocVien = state.arrHocVien.filter(item => item.id !== action.payload)
+            return {...state, arrHocVien: newArrHocVien}
+        }
         default: 
         return state
     }
